@@ -667,28 +667,28 @@ export default function SubscriptionsPage() {
           <div className="relative w-full max-w-2xl my-auto rounded-3xl border border-[#C9ADA7]/80 bg-white shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
             
             {/* Modal Header Bar */}
-            <div className="relative border-b border-[#C9ADA7]/40 bg-gradient-to-b from-[#F2E9E4]/60 to-white px-6 sm:px-8 pt-6 pb-5">
+            <div className="relative border-b border-[#C9ADA7]/40 bg-gradient-to-b from-[#F2E9E4]/60 to-white px-4 sm:px-8 pt-5 sm:pt-6 pb-4 sm:pb-5">
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="absolute top-5 right-5 grid h-8 w-8 place-items-center rounded-full bg-white border border-[#C9ADA7]/60 text-[#4A4E69] hover:text-[#22223B] hover:bg-[#F2E9E4] transition-colors"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 grid h-8 w-8 place-items-center rounded-full bg-white border border-[#C9ADA7]/60 text-[#4A4E69] hover:text-[#22223B] hover:bg-[#F2E9E4] transition-colors"
                 aria-label="Close modal"
               >
                 <X size={18} />
               </button>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 pr-8">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#C9ADA7] bg-white px-3 py-0.5 font-mono text-[11px] font-bold text-[#22223B] uppercase tracking-wider">
                   <ShieldCheck size={12} className="text-[#4A4E69]" />
-                  {currentPlan.id === "enterprise" ? "Enterprise Custom Proposal" : "14-Day Free Pilot Activation"}
+                  {currentPlan.id === "enterprise" ? "Enterprise Proposal" : "14-Day Free Pilot"}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full bg-[#F2E9E4] px-2.5 py-0.5 font-mono text-[11px] font-medium text-[#4A4E69]">
                   <Lock size={11} className="text-[#4A4E69]" />
-                  ₹0 Due Today · RBI Compliant
+                  ₹0 Due Today
                 </span>
               </div>
 
-              <h3 className="mt-2 text-xl sm:text-2xl font-extrabold text-[#22223B] tracking-tight font-heading">
+              <h3 className="mt-2 text-lg sm:text-2xl font-extrabold text-[#22223B] tracking-tight font-heading pr-6">
                 {currentPlan.id === "enterprise"
                   ? "Enterprise Development Architecture Setup"
                   : `Initialize ${currentPlan.name} Workspace`}
@@ -702,42 +702,42 @@ export default function SubscriptionsPage() {
 
               {/* Progress Step Badges (Only shown before success) */}
               {modalStep !== 3 && (
-                <div className="mt-4 flex items-center gap-2">
+                <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-2">
                   <button
                     type="button"
                     onClick={() => setModalStep(1)}
                     className={cn(
-                      "flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold transition-all",
+                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all min-h-[32px]",
                       modalStep === 1
                         ? "bg-[#22223B] text-white shadow-sm"
                         : "bg-white border border-[#C9ADA7]/60 text-[#4A4E69] hover:text-[#22223B]"
                     )}
                   >
                     <span className="grid h-4 w-4 place-items-center rounded-full bg-white/20 text-[10px]">1</span>
-                    Contact & Business Details
+                    <span>Contact Details</span>
                   </button>
 
-                  <div className="h-px w-4 bg-[#C9ADA7]/60" />
+                  <div className="hidden sm:block h-px w-3 bg-[#C9ADA7]/60" />
 
                   <button
                     type="button"
                     onClick={() => setModalStep(2)}
                     className={cn(
-                      "flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold transition-all",
+                      "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all min-h-[32px]",
                       modalStep === 2
                         ? "bg-[#22223B] text-white shadow-sm"
                         : "bg-white border border-[#C9ADA7]/60 text-[#4A4E69] hover:text-[#22223B]"
                     )}
                   >
                     <span className="grid h-4 w-4 place-items-center rounded-full bg-white/20 text-[10px]">2</span>
-                    Billing & Payment Method
+                    <span>Billing & Payment</span>
                   </button>
                 </div>
               )}
             </div>
 
             {/* Modal Body with Custom Scroll */}
-            <div className="overflow-y-auto px-6 sm:px-8 py-6 space-y-6 flex-1">
+            <div className="overflow-y-auto px-4 sm:px-8 py-5 sm:py-6 space-y-5 sm:space-y-6 flex-1">
               {/* STEP 1: CONTACT & BUSINESS DETAILS */}
               {modalStep === 1 && (
                 <form onSubmit={handleProceedToPayment} className="space-y-5">

@@ -92,32 +92,42 @@ export function Nav() {
               </Link>
             </div>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle (Comfortable 38px touch target) */}
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
-              className="md:hidden grid h-7 w-7 place-items-center rounded-full bg-[#F2E9E4] text-[#22223B] hover:bg-[#C9ADA7] transition-colors"
+              className="md:hidden grid h-9 w-9 place-items-center rounded-full bg-[#F2E9E4] text-[#22223B] hover:bg-[#C9ADA7] active:scale-95 transition-all shadow-sm"
             >
-              {mobileOpen ? <X size={15} /> : <Menu size={15} />}
+              {mobileOpen ? <X size={17} /> : <Menu size={17} />}
             </button>
           </div>
         </div>
       </div>
 
+      {/* Backdrop overlay for mobile menu */}
+      {mobileOpen && (
+        <div 
+          className="pointer-events-auto fixed inset-0 bg-black/35 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-200"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Drawer Dropdown */}
       {mobileOpen && (
-        <div className="pointer-events-auto fixed top-16 inset-x-4 max-w-sm mx-auto liquid-dock rounded-2xl p-4 md:hidden animate-in fade-in zoom-in-95 duration-200 border border-[#C9ADA7]/40">
-          <div className="space-y-1">
+        <div className="pointer-events-auto fixed top-16 inset-x-3 max-w-sm mx-auto liquid-dock rounded-2xl p-4 md:hidden z-50 animate-in fade-in zoom-in-95 duration-200 border-2 border-[#C9ADA7] shadow-2xl bg-white/95">
+          <div className="space-y-1.5">
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "block rounded-xl px-3.5 py-2 text-xs font-medium transition-colors",
-                pathname === "/" ? "bg-[#22223B] text-white font-semibold" : "text-[#4A4E69] hover:bg-[#F2E9E4]"
+                "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-colors min-h-[44px]",
+                pathname === "/" ? "bg-[#22223B] text-white shadow-sm" : "text-[#4A4E69] hover:bg-[#F2E9E4] hover:text-[#22223B]"
               )}
             >
-              Overview
+              <span>Overview</span>
+              {pathname === "/" && <span className="text-xs text-[#C9ADA7]">Active</span>}
             </Link>
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -127,26 +137,32 @@ export function Nav() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block rounded-xl px-3.5 py-2 text-xs font-medium transition-colors",
-                    isActive ? "bg-[#22223B] text-white font-semibold" : "text-[#4A4E69] hover:bg-[#F2E9E4]"
+                    "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-colors min-h-[44px]",
+                    isActive ? "bg-[#22223B] text-white shadow-sm" : "text-[#4A4E69] hover:bg-[#F2E9E4] hover:text-[#22223B]"
                   )}
                 >
-                  {link.title}
+                  <span>{link.title}</span>
+                  {isActive && <span className="text-xs text-[#C9ADA7]">Active</span>}
+                  {link.title === "Dashboard" && !isActive && (
+                    <span className="font-mono text-[10px] bg-[#F2E9E4] text-[#22223B] px-2 py-0.5 rounded font-bold">
+                      LIVE
+                    </span>
+                  )}
                 </Link>
               );
             })}
-            <div className="pt-2 border-t border-[#C9ADA7]/30 flex items-center justify-between">
+            <div className="pt-3 mt-2 border-t border-[#C9ADA7]/40 flex items-center justify-between gap-3">
               <Link
                 href="/login"
                 onClick={() => setMobileOpen(false)}
-                className="text-xs font-semibold text-[#4A4E69] hover:text-[#22223B]"
+                className="flex-1 text-center py-2.5 rounded-xl border border-[#C9ADA7] text-xs font-bold text-[#22223B] hover:bg-[#F2E9E4] min-h-[44px] flex items-center justify-center"
               >
                 Sign In
               </Link>
               <Link
                 href="/subscriptions"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-full bg-[#22223B] text-white text-xs px-3.5 py-1.5 font-bold"
+                className="flex-1 text-center py-2.5 rounded-xl bg-[#22223B] text-white text-xs font-bold hover:bg-[#4A4E69] shadow-md min-h-[44px] flex items-center justify-center"
               >
                 Start Free Pilot
               </Link>

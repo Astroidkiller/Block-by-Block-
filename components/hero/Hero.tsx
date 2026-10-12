@@ -53,10 +53,10 @@ export function Hero() {
             </p>
 
             {/* Pill Actions */}
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               <Link
                 href="/dashboard"
-                className="rounded-full bg-[#22223B] text-white font-bold text-sm px-6 py-3.5 hover:bg-[#4A4E69] active:scale-95 transition-all shadow-md flex items-center gap-2"
+                className="rounded-full bg-[#22223B] text-white font-bold text-sm px-6 py-3.5 hover:bg-[#4A4E69] active:scale-95 transition-all shadow-md flex items-center justify-center gap-2 min-h-[48px]"
               >
                 Launch Live Dashboard
                 <ArrowRight size={15} />
@@ -64,7 +64,7 @@ export function Hero() {
 
               <Link
                 href="/subscriptions"
-                className="rounded-full bg-[#F2E9E4] border border-[#C9ADA7] hover:bg-[#C9ADA7]/40 text-[#22223B] font-bold text-sm px-5 py-3.5 transition-colors"
+                className="rounded-full bg-[#F2E9E4] border border-[#C9ADA7] hover:bg-[#C9ADA7]/40 text-[#22223B] font-bold text-sm px-5 py-3.5 transition-colors flex items-center justify-center min-h-[48px]"
               >
                 Explore Pricing Plans
               </Link>
@@ -168,7 +168,7 @@ export function Hero() {
                         </span>
                       </div>
                       {i < 2 && (
-                        <div className="h-0.5 w-8 sm:w-12 bg-[#C9ADA7]/50 mx-2 -mt-4 relative overflow-hidden">
+                        <div className="h-0.5 w-4 sm:w-12 bg-[#C9ADA7]/50 mx-1 sm:mx-2 -mt-4 relative overflow-hidden">
                           <motion.div
                             className="absolute inset-y-0 left-0 bg-[#22223B]"
                             animate={{width: ["0%", "100%"]}}
